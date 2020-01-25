@@ -9,6 +9,7 @@ Then Run Shell Script It Will Automatically Compile All the Files <br>
 Then To Run the Game Type <br>
 ./Run <br>
 In your terminal <br>
+Enter Coordinates of the box and top left corner being 0 0 (Basic Coordinate Convention for Matrix)
 
 Directory Structure of Java Files<br>
 --------------------------------------
