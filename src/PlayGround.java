@@ -1,5 +1,5 @@
 package src.Playground;
-
+import src.Players.Machine;
 import src.Players.Human;
 import src.Players.Player;
 import src.State.StateManager;
@@ -7,16 +7,22 @@ import src.State.StateUpdater;
 import src.State.State;
 import src.State.Point;
 public class PlayGround{
-    Human PlayerOne,PlayerTwo;
+    Player PlayerOne,PlayerTwo;
     StateUpdater GameStateUpdater;
     State state;
     StateManager GameStateManager;
-    public PlayGround(){
+    public PlayGround(int NumberOfPlayers){
         state = new State();
         GameStateManager = new StateManager(state);
         GameStateUpdater = new StateUpdater(state);
-        PlayerOne = new Human('X');
-        PlayerTwo = new Human('O');   
+        if(NumberOfPlayers == 1){
+            PlayerOne = new Human('X');
+            PlayerTwo = new Machine('O',state);
+        }
+        else {
+            PlayerOne = new Human('X');
+            PlayerTwo = new Human('O');
+        }
     }
     public boolean startGame(){
         boolean GameGoing = true;
