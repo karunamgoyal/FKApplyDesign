@@ -4,7 +4,13 @@ import java.util.Scanner;
 import src.State.Point;
 
 public class Human implements Player{
-   
+    private char SYMBOL;
+    public Human(char Symbol){
+        SYMBOL = Symbol;
+    }
+    public char getSymbol(){
+        return SYMBOL;
+    }
     @Override
     public Point playMove(){
         Scanner InputUser = new Scanner(System.in);

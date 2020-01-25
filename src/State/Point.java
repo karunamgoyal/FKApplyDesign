@@ -14,4 +14,11 @@ public class Point{
         System.out.println("X "+ x);
         System.out.println("Y "+ y);
     }
+    public Integer getX(){
+        return x;
+    }
+    public Integer getY(){
+        return y;
+    }
+
 }
