@@ -35,6 +35,11 @@ public class PlayGround{
                 GameGoing = false;
                 return true;
             }
+            if(GameStateUpdater.isFull()){
+                GameGoing = false;
+                System.out.println("Game Drawn");
+                return true;
+            }
             Point playerTwoPoint = PlayerTwo.playMove();
             while(GameStateUpdater.isNotValid(playerTwoPoint)){
                 playerTwoPoint = PlayerTwo.wrongMove();
