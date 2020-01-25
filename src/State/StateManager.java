@@ -19,9 +19,12 @@ public class StateManager{
         for(int row = 0; row< n; row++){
             char rowChar=state.Board[row][0];
             for(int col=0;col<m;col++){    
+                
                 if(state.Board[row][col]!=rowChar){
                     break;
                 }
+                else if(state.Board[row][col]==0)
+                    break;
                 else if(col==m-1){
                     return true;
                 }
@@ -38,7 +41,9 @@ public class StateManager{
                 if(state.Board[row][col]!=colChar){
                     break;
                 }
-                else if(col==m-1){
+                else if(state.Board[row][col] ==0)
+                    break;
+                else if(row==n-1){
                     return true;
                 }
             }
@@ -50,9 +55,11 @@ public class StateManager{
         int m = state.Column;
         char diachar = state.Board[0][0];
         for(int dia = 0;dia<m||dia<n;dia++){
-            if(state.Board[dia][dia]!=diachar){
+            if( state.Board[dia][dia]!=diachar){
                 break;
             }
+            else if(state.Board[dia][dia]==0)
+                break ;
             else if(dia==m-1||dia==n-1)
                 return true;
         }
