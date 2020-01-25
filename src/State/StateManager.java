@@ -64,11 +64,13 @@ public class StateManager{
                 return true;
         }
         diachar = state.Board[0][m-1];
-        for(int dia = m-1;dia>0||dia>0;dia--){
-            if(state.Board[dia][dia]!=diachar){
+        for(int dia = m-1;dia>=0;dia--){
+            if(state.Board[m-dia-1][dia]!=diachar){
                 break;
             }
-            else if(dia==0||dia==0)
+            else if(state.Board[m-1-dia][dia]==0)
+                break ;
+            else if(dia==0)
                 return true;
         }
 
