@@ -18,12 +18,6 @@ public class StateUpdater{
         else    
             return true;
     }
-    public boolean isFull(){
-        if(state.numberofState==state.Row*state.Column){
-            return true;
-        }
-        else return false;
-    }
     public boolean updateMove(Point move,char symbol){
           state.Board[move.getX()][move.getY()] = symbol;
           numberofStates ++;

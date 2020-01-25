@@ -1,13 +1,11 @@
 package src.State;
 
 public class State{
-    int Row;
-    int Column;
-    char [][] Board;    
-    int numberofState;
+    public int Row;
+    public int Column;
+    char [][] Board;
     public State(){
         Row = 3;
-        numberofState = 0;
         Column = 3;
         Board = new char[Row][Column];
         for(int row = 0; row<Row;row++){

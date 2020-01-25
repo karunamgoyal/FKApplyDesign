@@ -2,6 +2,7 @@ package src.Players;
 
 import src.State.Point;
 import src.State.State;
+import java.util.Random;
 
 public class Machine implements Player{
     
