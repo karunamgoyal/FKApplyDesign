@@ -1,19 +1,31 @@
 package src.Players;
 
 import src.State.Point;
+import src.State.State;
 
 public class Machine implements Player{
     
-    
+    State state;
+    private char SYMBOL;
+    public Machine(char Symbol,State state){
+        SYMBOL = Symbol;
+        this.state = state;
+    }
+    public char getSymbol(){
+        return SYMBOL;
+    }
     @Override
     public Point playMove(){
-        //some Logic
-        return new Point();
+        Random r=new Random();
+        int x=r. nextInt(state.Row);
+        int y=r. nextInt(state.Column);
+        Point p = new Point(x,y);
+        return p;
     }
     @Override 
     public Point wrongMove(){
-        System.out.println("You Entered Wrong Move Enter Move Correctly");
         return playMove();
     }
+
 }
 
