@@ -55,7 +55,7 @@ CodeBase is Managed over multiple directories so it is easy for it to manage and
 
 Design Plan 
 ----------------------------------
-![Class Diagram Rough Idea](https://raw.githubusercontent.com/karunamgoyal/DoGit/master/TicTacToe.jpg)
+![Class Diagram Rough Idea](https://raw.githubusercontent.com/karunamgoyal/DoGit/master/TicTacToe%20(1).jpg)
 
 ````
 Instance of a Game Being Played at a Moment 
