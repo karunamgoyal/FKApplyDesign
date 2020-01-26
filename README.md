@@ -55,7 +55,7 @@ CodeBase is Managed over multiple directories so it is easy for it to manage and
 
 Design Plan 
 ----------------------------------
-![Class Diagram Rough Idea](https://raw.githubusercontent.com/karunamgoyal/DoGit/master/TicTacToe.jpg)
+![Class Diagram Rough Idea](https://raw.githubusercontent.com/karunamgoyal/DoGit/master/TicTacToe%20(1).jpg)
 
 ````
 Instance of a Game Being Played at a Moment 
@@ -97,7 +97,7 @@ Added Functionality Thinking of Future Requirements (Flexibility)
 * K Check 
 * Like Tic Tac Toe is (3,3,3)
 * Extend it to (M,N,K)
-* Change the Date Structure
+* Change the Data Structure
 
 Why I Think This Design is better
 -----
