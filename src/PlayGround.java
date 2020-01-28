@@ -18,11 +18,11 @@ public class PlayGround{
     int side;
     StateManager GameStateManager;
     LeaderBoard leaderboard1 , leaderboard2;
-    public PlayGround(int NumberOfPlayers,int level,int side){
+    public PlayGround(int NumberOfPlayers,int level,int side,LeaderBoard leaderboard1,LeaderBoard leaderboard2){
         this.side = side;
         this.level = level;
-        leaderboard1 = new LeaderBoard("Player 1");
-        leaderboard2 = new LeaderBoard("Player 2");
+        this.leaderboard1 = leaderboard1;
+        this.leaderboard2 = leaderboard2;
         state = new State[level][][];
         for(int i = 0;i<level;i++){
             state[i] = new State[(int)Math.pow(side,level-1-i)][(int)Math.pow(side,level-1-i)];
