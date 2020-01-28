@@ -2,6 +2,7 @@ package src;
 import src.Playground.PlayGround;
 import src.Players.Human;
 import src.Players.Machine;
+import src.State.LeaderBoardWhole;
 import src.State.Point;
 import java.util.Scanner;
 
@@ -29,5 +30,7 @@ public class RunTest{
         else{
             System.out.println("Enter Right Number Next Time");
         }
+        System.out.println("Leader Board");
+        LeaderBoardWhole.print();
     }   
 }

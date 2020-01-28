@@ -3,6 +3,7 @@ import src.Players.Machine;
 
 import java.util.Scanner;
 import src.State.LeaderBoard;
+import src.State.LeaderBoardWhole;
 import src.Players.Human;
 import src.Players.Player;
 import src.State.StateManager;
@@ -63,11 +64,15 @@ public class PlayGround{
                         boolean checkWinner = GameStateManager.hasWon(state[level-1][0][0]);
                         if(checkWinner){
                             System.out.println("Winner ");
+                            LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
+                            LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
                             return true;
                         }
                         boolean isfull = GameStateUpdater.isFull(state[level-1][0][0]);
                         if(isfull){
                             System.out.println("Drawn");
+                            LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
+                            LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
                             return true;
                         }
                     }
