@@ -9,14 +9,17 @@ public class RunTest{
 
     public static void main(String[] args) {
         System.out.println("********WELCOME to TIC-TAC-TOE********");
+        System.out.println("Enter Number of Sides");
+        Scanner input = new Scanner(System.in);
+        int side = input.nextInt();
         System.out.println("********         MENU         ********");
         System.out.println("1. One Player");
         System.out.println("2. Two Player");
         System.out.println("Enter The Number");
-        Scanner input = new Scanner(System.in);
+
         int number = input.nextInt();
         if(number==1||number==2) {
-            PlayGround play = new PlayGround(number);
+            PlayGround play = new PlayGround(number,2,side);
             if (play.startGame()) {
                 System.out.println("Game Finished Successfully");
             } else {

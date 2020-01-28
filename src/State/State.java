@@ -4,9 +4,11 @@ public class State{
     public int Row;
     public int Column;
     char [][] Board;
-    public State(){
-        Row = 3;
-        Column = 3;
+    int numberofStates;
+    public State(int side){
+        Row = side;
+        Column = side;
+        numberofStates = 0;
         Board = new char[Row][Column];
         for(int row = 0; row<Row;row++){
             for(int column = 0 ; column < Column; column++){
@@ -24,7 +26,24 @@ public class State{
             } 
         }
     }
-    
+    public static void printState(State [][] state, int level){
+        for(int i=0 ; i < Math.pow(3,level-1);i++){
+            for(int row =0 ;row<3;row++){
+                for(int j=0 ; j < Math.pow(3,level-1);j++){
+                    for(int col=0;col<3;col++){
+                        if(state[i][j].Board[row][col]!=0){
+                            System.out.print(" "+state[i][j].Board[row][col]+" ");
+                        }
+                        else{
+                            System.out.print(" * ");
+                        }
+                    }
+                    
+                }
+                System.out.println();
+            }   
+        }
+    }
     public void printState(){
            
         for(int row =0 ;row<Row;row++){

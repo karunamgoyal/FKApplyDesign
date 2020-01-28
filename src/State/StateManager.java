@@ -1,19 +1,17 @@
 package src.State;
 
 public class StateManager{
-    State state;
 
-    public StateManager(State state){
-        this.state = state; 
+    public StateManager(){ 
     }
-    public boolean hasWon(){
-        if(checkRow()||checkColumn()||checkDiagonal())
+    public boolean hasWon(State state){
+        if(checkRow(state)||checkColumn(state)||checkDiagonal(state))
             return true;
         else    
             return false;
 
     }
-    boolean checkRow(){
+    boolean checkRow(State state){
         int n = state.Row;
         int m = state.Column;
         for(int row = 0; row< n; row++){
@@ -32,7 +30,7 @@ public class StateManager{
         }
         return false;
     }
-    boolean checkColumn(){
+    boolean checkColumn(State state){
         int n = state.Row;
         int m = state.Column;
         for(int col = 0; col< m; col++){
@@ -50,7 +48,7 @@ public class StateManager{
         }
         return false;
     }
-    boolean checkDiagonal(){
+    boolean checkDiagonal(State state){
         int n = state.Row;
         int m = state.Column;
         char diachar = state.Board[0][0];

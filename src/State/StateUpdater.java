@@ -1,14 +1,12 @@
 package src.State;
 import src.State.Point;
 public class StateUpdater{
-    State state;
-    int numberofStates;
+    
 
-    public StateUpdater(State state){
-        this.state = state;
-        numberofStates = 0;
+    public StateUpdater(){
+        
     }
-    public boolean isNotValid(Point move){
+    public boolean isNotValid(Point move,State state){
         if(move.getX()<0 || move.getY()<0 || move.getX()>state.Row-1||move.getY()>state.Column-1){
             return true;
         }
@@ -18,13 +16,13 @@ public class StateUpdater{
         else    
             return true;
     }
-    public boolean updateMove(Point move,char symbol){
+    public boolean updateMove(Point move,char symbol,State state,int i){
           state.Board[move.getX()][move.getY()] = symbol;
-          numberofStates ++;
+          state.numberofStates +=i;
           return true;  
     }
-    public boolean isFull(){
-        return numberofStates >= (state.Row * state.Column);
+    public boolean isFull(State state){
+        return state.numberofStates >= (state.Row * state.Column);
     }
 
 

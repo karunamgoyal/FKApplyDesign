@@ -6,11 +6,11 @@ import java.util.Random;
 
 public class Machine implements Player{
     
-    State state;
+    int side;
     private char SYMBOL;
-    public Machine(char Symbol,State state){
+    public Machine(char Symbol,int side){
         SYMBOL = Symbol;
-        this.state = state;
+        this.side=side;
     }
     public char getSymbol(){
         return SYMBOL;
@@ -18,8 +18,8 @@ public class Machine implements Player{
     @Override
     public Point playMove(){
         Random r=new Random();
-        int x=r. nextInt(state.Row);
-        int y=r. nextInt(state.Column);
+        int x=r. nextInt(side);
+        int y=r. nextInt(side);
         Point p = new Point(x,y);
         return p;
     }
