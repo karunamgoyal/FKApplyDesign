@@ -2,7 +2,8 @@ package src.Playground;
 import src.Players.Machine;
 
 import java.util.Scanner;
-
+import src.State.LeaderBoard;
+import src.State.LeaderBoardWhole;
 import src.Players.Human;
 import src.Players.Player;
 import src.State.StateManager;
@@ -16,9 +17,12 @@ public class PlayGround{
     int level;
     int side;
     StateManager GameStateManager;
+    LeaderBoard leaderboard1 , leaderboard2;
     public PlayGround(int NumberOfPlayers,int level,int side){
         this.side = side;
         this.level = level;
+        leaderboard1 = new LeaderBoard("Player 1");
+        leaderboard2 = new LeaderBoard("Player 2");
         state = new State[level][][];
         for(int i = 0;i<level;i++){
             state[i] = new State[(int)Math.pow(side,level-1-i)][(int)Math.pow(side,level-1-i)];
@@ -60,11 +64,15 @@ public class PlayGround{
                         boolean checkWinner = GameStateManager.hasWon(state[level-1][0][0]);
                         if(checkWinner){
                             System.out.println("Winner ");
+                            LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
+                            LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
                             return true;
                         }
                         boolean isfull = GameStateUpdater.isFull(state[level-1][0][0]);
                         if(isfull){
                             System.out.println("Drawn");
+                            LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
+                            LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
                             return true;
                         }
                     }
@@ -105,6 +113,10 @@ public class PlayGround{
             thisState.printState();
             if(GameStateManager.hasWon(thisState)){
                 System.out.println("Player One Won");
+                leaderboard1.add(level);
+                System.out.println("LeaderBoard in Game p1 vs p2");
+                leaderboard1.showScore();
+                leaderboard2.showScore();
                 GameGoing = false;
                 return 'X';
             }
@@ -135,6 +147,10 @@ public class PlayGround{
             thisState.printState();
             if(GameStateManager.hasWon(thisState)){
                 System.out.println("Player Two Won");
+                leaderboard1.add(level);
+                System.out.println("LeaderBoard in Game p1 vs p2");
+                leaderboard1.showScore();
+                leaderboard2.showScore();
                 GameGoing = false;
                 return 'O';
             }

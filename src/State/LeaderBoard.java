@@ -11,6 +11,12 @@ public class LeaderBoard {
         Score = 0;
         Name = new String(name);
     }
+    public int getScore(){
+        return Score;
+    }
+    public String getName(){
+        return Name;
+    }
     public void add(int score){
         this.Score += score;
         LevelScore.add(score);        
