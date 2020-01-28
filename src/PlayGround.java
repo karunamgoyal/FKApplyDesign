@@ -2,7 +2,7 @@ package src.Playground;
 import src.Players.Machine;
 
 import java.util.Scanner;
-
+import src.State.LeaderBoard;
 import src.Players.Human;
 import src.Players.Player;
 import src.State.StateManager;
@@ -13,12 +13,15 @@ public class PlayGround{
     Player PlayerOne,PlayerTwo;
     StateUpdater GameStateUpdater;
     State[][][] state;
+    LeaderBoard leaderboard1,leaderboard2;
     int level;
     int side;
     StateManager GameStateManager;
     public PlayGround(int NumberOfPlayers,int level,int side){
         this.side = side;
         this.level = level;
+        leaderboard1 = new LeaderBoard("Player 1");
+        leaderboard2 = new LeaderBoard("Player 2");
         state = new State[level][][];
         for(int i = 0;i<level;i++){
             state[i] = new State[(int)Math.pow(side,level-1-i)][(int)Math.pow(side,level-1-i)];
@@ -104,6 +107,10 @@ public class PlayGround{
             thisState.printState();
             if(GameStateManager.hasWon(thisState)){
                 System.out.println("Player One Won");
+                leaderboard1.add(level);
+                System.out.println("Player 1 vs Player 2");
+                leaderboard1.showScore();
+                leaderboard2.showScore();
                 GameGoing = false;
                 return 'X';
             }
@@ -130,6 +137,10 @@ public class PlayGround{
             thisState.printState();
             if(GameStateManager.hasWon(thisState)){
                 System.out.println("Player Two Won");
+                leaderboard2.add(level);
+                System.out.println("Player 1 vs Player 2");
+                leaderboard1.showScore();
+                leaderboard2.showScore();
                 GameGoing = false;
                 return 'O';
             }

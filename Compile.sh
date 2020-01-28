@@ -1,4 +1,5 @@
 echo "Compiling ...."
+javac src/State/LeaderBoard.java -d .
 javac src/State/Point.java -d .
 javac src/State/State.java -d .
 javac src/State/StateUpdater.java -d .
