@@ -19,13 +19,19 @@ public class RunTest{
 
         int number = input.nextInt();
         if(number==1||number==2) {
-            PlayGround play = new PlayGround(number,2,side);
+            String ch = "p";
+            int level = 1;
+            System.out.println("Enter Playing LEveL");
+            level = input.nextInt();
+            PlayGround play = new PlayGround(number,level,side);
             if (play.startGame()) {
                 System.out.println("Game Finished Successfully");
             } else {
                 System.out.println("Some Unfortunate Error in the Game");
             }
-        }
+           
+            level++;
+        }   
         else{
             System.out.println("Enter Right Number Next Time");
         }
