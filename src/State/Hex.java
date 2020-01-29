@@ -53,7 +53,7 @@ public class Hex implements StateInterface{
             for(int row =0 ;row<Row;row++){
                 for(int j=0 ; j < Math.pow(Column,level-1);j++){
                     for(int col=0;col<Column;col++){
-                        if(state[i][j].getBoard()[row][col]=='0'){
+                        if(state[i][j].getBoard()[row][col]!='#'){
                             System.out.print(" "+state[i][j].getBoard()[row][col]+" ");
                         }
                         else{
@@ -87,7 +87,7 @@ public class Hex implements StateInterface{
     public void printState(){
         for(int row =0 ;row<Row;row++){
             for(int col=0;col<Column;col++){
-                if(Board[row][col]=='0'){
+                if(Board[row][col]!='#'){
                     System.out.print(" "+Board[row][col]+" ");
                 }
                 else{

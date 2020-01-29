@@ -59,9 +59,6 @@ public class RunTest{
         else{
             System.out.println("Enter Right Number Next Time");
         }
-
-
-        */
         
     }   
 }
