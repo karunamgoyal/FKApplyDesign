@@ -6,23 +6,23 @@ public class StateUpdater{
     public StateUpdater(){
         
     }
-    public boolean isNotValid(Point move,State state){
-        if(move.getX()<0 || move.getY()<0 || move.getX()>state.Row-1||move.getY()>state.Column-1){
+    public boolean isNotValid(Point move,StateInterface state){
+        if(move.getX()<0 || move.getY()<0 || move.getX()>state.getRow()-1||move.getY()>state.getColumn()-1){
             return true;
         }
-        if(state.Board[move.getX()][move.getY()]==0){
+        if(state.getBoard()[move.getX()][move.getY()]==0||state.getBoard()[move.getX()][move.getY()]=='0'){
             return false;
         }
         else    
             return true;
     }
-    public boolean updateMove(Point move,char symbol,State state,int i){
-          state.Board[move.getX()][move.getY()] = symbol;
-          state.numberofStates +=i;
+    public boolean updateMove(Point move,char symbol,StateInterface state,int i){
+          state.getBoard()[move.getX()][move.getY()] = symbol;
+          state.changeCount(i);
           return true;  
     }
-    public boolean isFull(State state){
-        return state.numberofStates >= (state.Row * state.Column);
+    public boolean isFull(StateInterface state){
+        return state.getCount() >= (state.getRow()* state.getColumn());
     }
 
 

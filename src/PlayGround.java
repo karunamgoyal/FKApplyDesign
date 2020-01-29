@@ -9,31 +9,23 @@ import src.Players.Player;
 import src.State.StateManager;
 import src.State.StateUpdater;
 import src.State.State;
+import src.State.StateInterface;
 import src.State.Point;
+import src.State.Hex;
 public class PlayGround{
     Player PlayerOne,PlayerTwo;
     StateUpdater GameStateUpdater;
-    State[][][] state;
+    StateInterface[][][] state;
     int level;
     int side;
     StateManager GameStateManager;
     LeaderBoard leaderboard1 , leaderboard2;
-    public PlayGround(int NumberOfPlayers,int level,int side,LeaderBoard leaderboard1,LeaderBoard leaderboard2){
+    public PlayGround(int NumberOfPlayers,int level,int side,LeaderBoard leaderboard1,LeaderBoard leaderboard2,StateInterface[][][] state){
         this.side = side;
         this.level = level;
         this.leaderboard1 = leaderboard1;
         this.leaderboard2 = leaderboard2;
-        state = new State[level][][];
-        for(int i = 0;i<level;i++){
-            state[i] = new State[(int)Math.pow(side,level-1-i)][(int)Math.pow(side,level-1-i)];
-        }
-        for(int k = 0;k<level;k++){
-            for(int i=0;i<Math.pow(side,level-1-k);i++){
-                for(int j=0;j<Math.pow(side,level-1-k);j++){
-                    state[k][i][j] = new State(side);
-                }
-            }   
-        }    
+        this.state = state;   
         GameStateManager = new StateManager();
         GameStateUpdater = new StateUpdater();
         if(NumberOfPlayers == 1){
@@ -49,31 +41,33 @@ public class PlayGround{
         boolean gameGoing = true;
         try{
             while(gameGoing){
-                for(int j=0;j<Math.pow(3,level-1);j++){
-                    for(int k=0;k<(int)Math.pow(3,level-1);k++){
-                        char winner = startLevel(state[0][j][k]);
-                        for(int i = 1;i<level;i++){
-                            int xmove = j/(int)Math.pow(3,i-1);
-                            int ymove = k/(int)Math.pow(3,i-1);
-                            Point move = new Point(xmove,ymove);
-                            xmove = j/(int)Math.pow(3,i);
-                            ymove = k/(int)Math.pow(3,i);
-                            GameStateUpdater.updateMove(move,winner,state[i][xmove][ymove],1);
-                        }
-                        state[level-1][0][0].printState();
-                        boolean checkWinner = GameStateManager.hasWon(state[level-1][0][0]);
-                        if(checkWinner){
-                            System.out.println("Winner ");
-                            LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
-                            LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
-                            return true;
-                        }
-                        boolean isfull = GameStateUpdater.isFull(state[level-1][0][0]);
-                        if(isfull){
-                            System.out.println("Drawn");
-                            LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
-                            LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
-                            return true;
+                for(int j=0;j<Math.pow(state[0][0][0].getRow(),level-1);j++){
+                    for(int k=0;k<(int)Math.pow(state[0][0][0].getColumn(),level-1);k++){
+                        if(state[0][j][k].getCheck()!=-1){
+                            char winner = startLevel(state[0][j][k]);
+                            for(int i = 1;i<level;i++){
+                                int xmove = j/(int)Math.pow(state[0][0][0].getRow(),i-1);
+                                int ymove = k/(int)Math.pow(state[0][0][0].getRow(),i-1);
+                                Point move = new Point(xmove,ymove);
+                                xmove = j/(int)Math.pow(state[0][0][0].getRow(),i);
+                                ymove = k/(int)Math.pow(state[0][0][0].getRow(),i);
+                                GameStateUpdater.updateMove(move,winner,state[i][xmove][ymove],1);
+                            }
+                            state[level-1][0][0].printState();
+                            boolean checkWinner = GameStateManager.hasWon(state[level-1][0][0]);
+                            if(checkWinner){
+                                System.out.println("Winner ");
+                                LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
+                                LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
+                                return true;
+                            }
+                            boolean isfull = GameStateUpdater.isFull(state[level-1][0][0]);
+                            if(isfull){
+                                System.out.println("Drawn");
+                                LeaderBoardWhole.addScore(leaderboard1, leaderboard1.getScore());
+                                LeaderBoardWhole.addScore(leaderboard2, leaderboard2.getScore());
+                                return true;
+                            }
                         }
                     }
                     
@@ -85,11 +79,12 @@ public class PlayGround{
         }
         return false;
     }
-    public char startLevel(State thisState)throws Exception{
+    public char startLevel(StateInterface thisState)throws Exception{
         boolean GameGoing = true;
         boolean isUpdated = false;
         Point back;
         while(GameGoing){
+            
             Point playerOnePoint = PlayerOne.playMove();
             while(GameStateUpdater.isNotValid(playerOnePoint,thisState)){
                 playerOnePoint = PlayerOne.wrongMove();
@@ -98,9 +93,12 @@ public class PlayGround{
             back = playerOnePoint;
             if(!isUpdated)
                 throw new Exception("Some Error") ;
+            
+            state[0][0][0].printState(state[0], level);    
             thisState.printState();
-            State.printState(state[0],level);
+            
             Scanner in = new Scanner(System.in);
+            
             System.out.println("Enter b if you want to revert move or anything else");
             String check = in.next();
             if(check.equals("b")||check.equals("B")){
@@ -109,8 +107,10 @@ public class PlayGround{
                 while(GameStateUpdater.isNotValid(playerOnePoint,thisState)){
                     playerOnePoint = PlayerOne.wrongMove();
                 }
+                isUpdated = GameStateUpdater.updateMove(playerOnePoint,PlayerOne.getSymbol(),thisState,1);
             }
             thisState.printState();
+            state[0][0][0].printState(state[0], level);
             if(GameStateManager.hasWon(thisState)){
                 System.out.println("Player One Won");
                 leaderboard1.add(level);
@@ -134,7 +134,6 @@ public class PlayGround{
             if(!isUpdated)
                 throw new Exception("Some Error");
             thisState.printState();
-            State.printState(state[0],level);
             System.out.println("Enter b if you want to revert move or anything else");
             check = in.next();
             if(check.equals("b")||check.equals("B")){
@@ -142,7 +141,8 @@ public class PlayGround{
                 playerTwoPoint = PlayerTwo.playMove();
                 while(GameStateUpdater.isNotValid(playerTwoPoint,thisState)){
                     playerTwoPoint = PlayerTwo.wrongMove();
-                }
+                    GameStateUpdater.updateMove(playerTwoPoint,PlayerTwo.getSymbol(),thisState,1);     
+               }
             }
             thisState.printState();
             if(GameStateManager.hasWon(thisState)){
