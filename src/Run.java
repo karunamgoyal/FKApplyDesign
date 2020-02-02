@@ -12,7 +12,7 @@ import src.State.StateManager;
 import src.State.StateUpdater;
 
 import java.util.Scanner;
-
+//Game Starter
 public class Run{
 
     public static void main(String[] args) {
@@ -35,8 +35,8 @@ public class Run{
             level = input.nextInt();
             System.out.println("Enter The Game type\n1) TicTacToe 2) Hex");
             int type  = input.nextInt();
-            String ch = "p";
-            while(ch.equals("p")){
+            int ch = 1;
+            while(ch==1){
                 if(type==1){
                     state = new State(side, level);
                 }
@@ -51,9 +51,9 @@ public class Run{
                 }
                 System.out.println("Leader Board");
                 LeaderBoardWhole.print();
-                System.out.println("If you wish to continue to next level enter p");
+                System.out.println("If you wish to continue to next level enter 1 otherwise anyother number");
                 
-                ch = input.next();
+                ch = input.nextInt();
                 level++;
                 
             }

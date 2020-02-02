@@ -1,5 +1,5 @@
 package src.State;
-
+//Implementation of TicTacToe Game named State representing the current state
 public class State extends StateInterface{
 
     State[][] state;

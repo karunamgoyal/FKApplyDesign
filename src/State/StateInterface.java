@@ -1,5 +1,5 @@
 package src.State;
-
+// Abstract Class for TicTacToe Game and Hex Game
 public abstract class StateInterface{
     int level;
     int Row;
@@ -34,6 +34,7 @@ public abstract class StateInterface{
     public boolean isMarked(Point p){
         return getSymbol(p)!='0';
     }
+    //Print The game state
     public void printGame(){
         int rows = getRowLevel();
         int col = getColumnLevel();

@@ -1,5 +1,5 @@
 package src.State;
-
+//Hex Game Implementation
 public class Hex extends StateInterface{
 
     Hex[][] hex;
@@ -21,6 +21,7 @@ public class Hex extends StateInterface{
             }
         }
     }
+    //Gets Subgame for multilevel Games
     public Hex getSubGame(int x,int y){
         return hex[x][y];
     }

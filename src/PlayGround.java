@@ -10,7 +10,7 @@ import src.State.StateManager;
 import src.State.StateUpdater;
 import src.State.StateInterface;
 import src.State.Point;
-
+//PlayGround For The Classes Act As A Virtual Box 
 public class PlayGround {
     Player PlayerOne, PlayerTwo;
     StateInterface state;
@@ -66,9 +66,9 @@ public class PlayGround {
         StateUpdater.updateMove(playerPoint, player.getSymbol(), state);
         state.printGame();
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter b if you want to revert move or anything else");
-        String check = in.next();
-        if (check.equals("b") || check.equals("B")) {
+        System.out.println("Enter 1 if you want to revert move or anyother number");
+        int check = in.nextInt();
+        if (check==1) {
             StateUpdater.updateMove(playerPoint,'0', state);
             playerPoint = PlayerOne.playMove();
             while (!StateUpdater.isValid(playerPoint, state)) {
