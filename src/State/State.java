@@ -1,87 +1,28 @@
 package src.State;
 
-public class State implements StateInterface{
-    public int Row;
-    public int Column;
-    char [][] Board;
-    int numberofStates;
-    int side ;
-    int check;
-    public void changeCount(int i){
-        numberofStates+=i;
-    }
-    public int getCount(){
-        return numberofStates;
-    }
-    public int getCheck(){
-        return check;
-    }
-    public State(int side){
+public class State extends StateInterface{
+
+    State[][] state;
+    public State(int side,int level){
         this.side = side;
-        check = 0;
         Row = side;
         Column = side;
-        numberofStates = 0;
-        Board = new char[Row][Column];
+        this.level = level;
+        if(level == 0){
+            symbol = '0';
+            return ;
+        }
+
+        state = new State[Row][Column];
+
         for(int row = 0; row<Row;row++){
             for(int column = 0 ; column < Column; column++){
-                Board[row][column]=0;
+                state[row][column]=new State(side,level-1);
             } 
         }
     }
 
-    public State(int RowNew,int ColumnNew){
-        Row = RowNew;
-        Column = ColumnNew;
-        Board = new char[Row][Column];
-        for(int row = 0; row<Row;row++){
-            for(int column = 0 ; column < Column; column++){
-                Board[row][column]=0;
-            } 
-        }
+    public State getSubGame(int x,int y){
+        return state[x][y];
     }
-    public void printState(StateInterface [][] state, int level){
-        for(int i=0 ; i < Math.pow(Row,level-1);i++){
-            for(int row =0 ;row<Column;row++){
-                for(int j=0 ; j < Math.pow(Column,level-1);j++){
-                    for(int col=0;col<side;col++){
-                        if(state[i][j].getBoard()[row][col]!=0){
-                            System.out.print(" "+state[i][j].getBoard()[row][col]+" ");
-                        }
-                        else{
-                            System.out.print(" * ");
-                        }
-                    }
-                    
-                }
-                System.out.println();
-            }   
-        }
-    }
-    public int getRow(){
-        return Row;
-    }
-    public int getColumn(){
-        return Column;
-    }
-    public char [][] getBoard(){
-        return Board;
-    }
-    public void printState(){
-           
-        for(int row =0 ;row<Row;row++){
-            for(int col=0;col<Column;col++){
-                if(Board[row][col]!=0){
-                    System.out.print(" "+Board[row][col]+" ");
-                }
-                else{
-                    System.out.print(" * ");
-                }
-            }
-            System.out.println();
-        }
-    }
-
-
-
 }
