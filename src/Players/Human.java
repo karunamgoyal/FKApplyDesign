@@ -18,7 +18,9 @@ public class Human implements Player{
         Integer Row = InputUser.nextInt();
         Integer Column = InputUser.nextInt();
         Point point = new Point(Row, Column);
+        InputUser.close();
         return point;
+        
     }
     @Override 
     public Point wrongMove(){

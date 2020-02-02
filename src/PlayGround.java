@@ -3,6 +3,7 @@ package src.Playground;
 import src.Players.Machine;
 import java.util.Scanner;
 import src.State.LeaderBoard;
+import src.State.LeaderBoardWhole;
 import src.Players.Human;
 import src.Players.Player;
 import src.State.StateManager;
@@ -68,7 +69,7 @@ public class PlayGround {
         System.out.println("Enter b if you want to revert move or anything else");
         String check = in.next();
         if (check.equals("b") || check.equals("B")) {
-            StateUpdater.updateMove(playerPoint, (char) 0, state);
+            StateUpdater.updateMove(playerPoint,'0', state);
             playerPoint = PlayerOne.playMove();
             while (!StateUpdater.isValid(playerPoint, state)) {
                 playerPoint = PlayerOne.wrongMove();
@@ -82,6 +83,7 @@ public class PlayGround {
         if (StateManager.hasWon(state, player.getSymbol())) {
             System.out.println("Player "+player.getSymbol()+" Won");
             leaderBoard.add(level);
+            LeaderBoardWhole.addScore(leaderBoard, leaderBoard.getScore());
             System.out.println("LeaderBoard in Game p1 vs p2");
             leaderboard1.showScore();
             leaderboard2.showScore();

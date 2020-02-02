@@ -1,1 +1,1 @@
-java src.RunTest
+java src.Run

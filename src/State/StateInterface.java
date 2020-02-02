@@ -42,14 +42,14 @@ public abstract class StateInterface{
             for(int j = 0; j < col ; j++){
                 if(StateUpdater.isValid(new Point(i,j), this)){
                     if(isMarked(new Point(i,j))){
-                        System.out.print(" "+getSymbol(new Point(i,j))+" ");
+                        System.out.print("   "+getSymbol(new Point(i,j))+"   ");
                     }
                     else{
-                        System.out.print(" * ");
+                        System.out.print(" ("+i+","+j+") ");
                     }
                 }
                 else{
-                    System.out.print("   ");
+                    System.out.print("       ");
                 }
             }
             System.out.println();

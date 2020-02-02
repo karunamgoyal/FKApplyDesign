@@ -13,7 +13,7 @@ import src.State.StateUpdater;
 
 import java.util.Scanner;
 
-public class RunTest{
+public class Run{
 
     public static void main(String[] args) {
         
