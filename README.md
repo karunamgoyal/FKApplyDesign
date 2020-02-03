@@ -81,8 +81,8 @@ CodeBase is Managed over multiple directories so it is easy for it to manage and
 
 Design Plan 
 ----------------------------------
-![Class Diagram Rough Idea](https://raw.githubusercontent.com/karunamgoyal/DoGit/master/GameClass.jpg)
-![Sequesnce Diagram Overview](https://raw.githubusercontent.com/karunamgoyal/DoGit/master/Game.jpg)
+![Class Diagram Rough Idea](https://raw.githubusercontent.com/karunamgoyal/DoGit/master/GameClass1.jpg)
+![Sequesnce Diagram Overview](https://raw.githubusehttps://raw.githubusercontent.com/karunamgoyal/DoGit/master/GameClass1.jpgrcontent.com/karunamgoyal/DoGit/master/Game.jpg)
 
 ````
 Instance of a Game Being Played at a Moment 
