@@ -10,7 +10,7 @@ Then Run Shell Script It Will Automatically Compile All the Files <br>
 Then To Run the Game Type <br>
 ./Run <br>
 To Run Test First Compile Test with <br>
-./Compile.sh <br>
+./CompileTest.sh <br>
 then <br>
 ./RunTest.sh<br>
 In your terminal <br>
